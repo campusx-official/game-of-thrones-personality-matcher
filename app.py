@@ -14,18 +14,20 @@ df['character'] = df['character'].str.replace('Bronn','Lord Bronn')
 df['character'] = df['character'].str.replace('Sandor Clegane','The Hound')
 df['character'] = df['character'].str.replace('Robb Stark','Rob Stark')
 
-def fetch_image(name,api_data):
+#  I see that the code is written using an older version of Streamlit that used st.beta_columns. 
+# To update the code to the latest version, you can replace st.beta_columns with st.columns 
+# because the beta_columns function has been deprecated.
+
+def fetch_image(name, api_data):
     for item in api_data:
         if item['fullName'] == name:
             return item['imageUrl']
-
-
 
 st.title("Game Of Thrones Personality Matcher")
 
 characters = df['character'].values
 
-selected_character = st.selectbox("Select a character",characters)
+selected_character = st.selectbox("Select a character", characters)
 
 # fetch closest match
 character_id = np.where(df['character'].values == selected_character)[0][0]
@@ -35,16 +37,18 @@ distances = []
 for i in range(len(x)):
     distances.append(np.linalg.norm(x[character_id] - x[i]))
 
-recommended_id = sorted(list(enumerate(distances)),key=lambda x:x[1])[1][0]
+recommended_id = sorted(list(enumerate(distances)), key=lambda x: x[1])[1][0]
 recommended_character = df['character'].values[recommended_id]
 
-image_url = fetch_image(selected_character,api_data)
-recommended_character_image_url = fetch_image(recommended_character,api_data)
-col1, col2 = st.beta_columns(2)
+image_url = fetch_image(selected_character, api_data)
+recommended_character_image_url = fetch_image(recommended_character, api_data)
+
+col1, col2 = st.columns(2)
 
 with col1:
     st.header(selected_character)
     st.image(image_url)
+
 with col2:
     st.header(recommended_character)
     st.image(recommended_character_image_url)

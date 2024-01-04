@@ -25,7 +25,6 @@ steps:
   - '--image=${_IMAGE_NAME}:${_TAG_NAME}'
   - '--platform=managed'
   - '--region=${_REGION}'
-  - '--allow-unauthenticated'
 
 images:
 - '${_IMAGE_NAME}:${_TAG_NAME}'

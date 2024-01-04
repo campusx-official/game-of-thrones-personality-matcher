@@ -1,13 +1,30 @@
+# Define variables for project ID, image name, and tag.
+# Customize these values as needed.
+substitutions:
+  _PROJECT_ID: 'stoked-castle-409104'  # Replace with your actual project ID.
+  _IMAGE_NAME: 'gcr.io/${_PROJECT_ID}/game-of-thrones-personality-matcher'
+  _TAG_NAME: 'latest'
+  _REGION: 'us-central1'  # Replace with your preferred region.
+  _SERVICE_NAME: 'game-of-thrones-servicename'  # Replace with your preferred Cloud Run service name.
+
 steps:
-# Build the container image
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/stoked-castle-409104/game-of-thrones-personality-matcher', '.']
-# Push the container image to Container Registry
+  args: ['build', '-t', '${_IMAGE_NAME}:${_TAG_NAME}', '.']
+
+# Push the Docker image to Google Container Registry.
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/stoked-castle-409104/game-of-thrones-personality-matcher']
-# Deploy container image to Cloud Run
+  args: ['push', '${_IMAGE_NAME}:${_TAG_NAME}']
+
+# Deploy to Cloud Run.
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  entrypoint: gcloud
-  args: ['run', 'deploy', 'game-of-thrones-servicename', '--image', 'gcr.io/stoked-castle-409104/game-of-thrones-personality-matcher', '--region', 'us-central1']
+  entrypoint: 'gcloud'
+  args:
+  - 'run'
+  - 'deploy'
+  - '${_SERVICE_NAME}'
+  - '--image=${_IMAGE_NAME}:${_TAG_NAME}'
+  - '--platform=managed'
+  - '--region=${_REGION}'
+
 images:
-- gcr.io/stoked-castle-409104/game-of-thrones-personality-matcher
+- '${_IMAGE_NAME}:${_TAG_NAME}'  # Reference the dynamic image name and tag.

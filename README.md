@@ -25,7 +25,11 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 This will launch the web app, and you can access it in your browser.
-
+If you are using these application on an instance/VM in Cloud Platform:
+```
+streamlit run --server.port 8501 --server.address <your ip address> app.py
+# Example: streamlit run --server.port 8501 --server.address 0.0.0.0 app.py
+```
 Note:
 Make sure you have Python installed.
 The app uses the Streamlit library, and it will be automatically installed with the requirements.

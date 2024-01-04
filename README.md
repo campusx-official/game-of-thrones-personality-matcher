@@ -6,8 +6,9 @@ This project implements t-SNE on the Game of Thrones dataset, providing a person
 ## Installation
 
 1. Clone the repository:
-   ```bash
+   ```
    git clone https://github.com/your-username/Game-of-thrones-personality-matcher.git
+   ```
 Navigate to the project directory:
 
 bash

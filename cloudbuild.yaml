@@ -8,6 +8,6 @@ steps:
 # Deploy container image to Cloud Run
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
-  args: ['run', 'deploy', 'game-of-thrones-servicename', '--image', 'gcr.io/stoked-castle-409104/game-of-thrones-personality-matcher', '--region', 'REGION']
+  args: ['run', 'deploy', 'game-of-thrones-servicename', '--image', 'gcr.io/stoked-castle-409104/game-of-thrones-personality-matcher', '--region', 'us-central1']
 images:
 - gcr.io/stoked-castle-409104/game-of-thrones-personality-matcher

@@ -25,6 +25,7 @@ steps:
   - '--image=${_IMAGE_NAME}:${_TAG_NAME}'
   - '--platform=managed'
   - '--region=${_REGION}'
+ '--set-env-vars=PORT=8501'
 
 images:
 - '${_IMAGE_NAME}:${_TAG_NAME}'  # Reference the dynamic image name and tag.

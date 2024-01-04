@@ -6,21 +6,21 @@ This project implements t-SNE on the Game of Thrones dataset, providing a person
 ## Installation
 
 1. Clone the repository:
-   ```
-   git clone https://github.com/your-username/Game-of-thrones-personality-matcher.git
-   ```
+```
+git clone https://github.com/your-username/Game-of-thrones-personality-matcher.git
+```
    
-Navigate to the project directory:
+2. Navigate to the project directory:
 ```
 cd Game-of-thrones-personality-matcher
 ```
 
-Install dependencies using the following command:
+3. Install dependencies using the following command:
 ```
 pip install -r requirements.txt
 ```
 
-Run the Streamlit app using the following command:
+4. Run the Streamlit app using the following command:
 ```
 streamlit run app.py
 ```
